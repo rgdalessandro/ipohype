@@ -66,7 +66,7 @@
 
 		$symbols = array();
 
-		foreach ( $con->fetch() )
+		while ( $con->fetch() )
 		{
 			$symbols[] = $con->rows["symbol"];
 		}

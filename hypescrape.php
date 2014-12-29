@@ -7,8 +7,6 @@
 	$symbols = symbolsNoScore();
 	$con = new connection();
 
-	$counter = 0;
-
 	foreach ( $symbols as $symbol )
 	{
 		$backhypehtml = file_get_contents('http://otter.topsy.com/sentiment.js?q=%24' . $symbol["symbol"] . '&mintime=' . ($symbol["ipodate"] - 691200) . '&maxtime=' . ($symbol["ipodate"] - 86400) . '&apikey=09C43A9B270A470B8EB8F2946A9369F3');		
@@ -42,5 +40,4 @@
 
 		return $symbols;
 	}
-
 ?>

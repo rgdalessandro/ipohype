@@ -7,9 +7,6 @@
 		case "dateToCheck":
 			dateToCheck();
 			break;
-		case "addIPO":
-			addIPO();
-			break;
 		case "dateExists":
 			dateExists();
 			break;
@@ -34,25 +31,6 @@
 		$json = json_encode(array("results" => $ipos, "status" => "OK"));
 
 		die($json);
-	}
-
-	function addIPO()
-	{
-		$ipos = array( 
-			array(
-				"symbol" => "APPL", 
-				"init_price" => 15.20, 
-				"final_price" => 0.00
-				) 
-			);
-
-		$con = new connection();
-		foreach ($ipos as $ipo)
-		{
-			$sql = "INSERT INTO ipo (symbol, openprice, closeprice) values ('" . mysql_real_escape_string($ipo['symbol']) . "', '" . mysql_real_escape_string($ipo['init_price']) . "', '" . mysql_real_escape_string($ipo['final_price']) . "')";
-			$con->execute($sql);
-			echo "done bitch";
-		}
 	}
 
 	function dateExists()
