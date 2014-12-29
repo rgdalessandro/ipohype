@@ -16,7 +16,7 @@
 	{
 		$date = date('Y-m-d', strtotime($_GET['date']));
 
-		$sql = "SELECT * FROM ipo WHERE ipodate = '" . mysql_real_escape_string($date) . "'";
+		$sql = "SELECT * FROM ipo WHERE ipodate = '" . mysql_escape_string($date) . "'";
 
 		$con = new connection();
 		$con->execute($sql);
@@ -37,7 +37,7 @@
 	{
 		$date = date('Y-m-d', strtotime($_GET['date']));
 
-		$sql = "SELECT COUNT(*) AS count FROM ipodate WHERE ipodate = '" . mysql_real_escape_string($date) . "'";
+		$sql = "SELECT COUNT(*) AS count FROM ipodate WHERE ipodate = '" . mysql_escape_string($date) . "'";
 
 		$con = new connection();
 		$con->execute($sql);
