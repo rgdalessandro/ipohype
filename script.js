@@ -5,6 +5,7 @@ $(document).ready(function() {
     fetchIPOs(today);
 
     $('#datepicker').datepicker({ // jQuery UI's Datepicker
+        beforeShowDay: $.datepicker.noWeekends,
         showOtherMonths: true,
         selectOtherMonths: true,
         minDate: new Date(2014, 1 -1, 10),
