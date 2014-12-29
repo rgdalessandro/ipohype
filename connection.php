@@ -1,13 +1,13 @@
 <?
-
+include_once ( 'config.php' );
 
 class connection
 {
     public $rows;
     private $server = "127.0.0.1";
     private $db = 'ipohype';
-    private $user = "root"; //FILL IN
-    private $pass = "root"; //FILL IN
+    private $user = MYSQL_USER;
+    private $pass = MYSQL_PASS;
     private $result;
     private $link;
     private $exectime; //execution time
