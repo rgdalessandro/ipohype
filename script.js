@@ -60,6 +60,8 @@ function fetchIPOs(date) // Function to pull from the ipo table
                             marketGrowth = "wash";
                         }
 
+                        hypeVal = Math.floor(((result.hype - 40) / 25) * 10);
+
                         $("#results").append(
                             '<div class="ipoResultRow">\
 							<div class="pull-left">\
@@ -67,22 +69,20 @@ function fetchIPOs(date) // Function to pull from the ipo table
 								<div class="companyName">' + result.company + '</div>\
 							</div>\
 							<div class="pull-right">\
-								<div class="hype">' + result.hype + '</div>\
+								<div class="hype hypeVal_' + hypeVal + '">' + hypeVal + '</div>\
 							</div>\
 							<div class="clearfix"></div>\
 							<div class="ipoResultRowSlider">\
 								<div class="offer">\
 									<div class="pull-left">\
-										<div><div class="offeringPrice">Ipo Offering Price: </div><div class="offering">$' + result.ipoprice + '</div></div>\
-										<div><div class="closingPrice">1st Day Closing Price: </div><div class="closing">$' + result.closeprice + '</div></div>\
+										<div class="sliderHeader pull-left">1st Day IPO Performance: </div><div class="prices">$' + result.ipoprice + ' -->  $' + result.closeprice + '</div>\
 									</div>\
 									<div class="pull-right"><div class="growth ' + offerGrowth + '">' + (((result.closeprice / result.ipoprice) * 100) - 100).toFixed(2) + '%</div></div>\
 									<div class="clearfix"></div>\
 								</div>\
 								<div class="market">\
 									<div class="pull-left">\
-										<div><div class="marketPrice">1st Day Opening Price: </div><div class="open">$' + result.openprice + '</div></div>\
-										<div><div class="closingPrice">1st Day Closing Price: </div><div class="closing">$' + result.closeprice + '</div></div>\
+										<div class="sliderHeader pull-left">1st Day Market Performance: </div><div class="prices">$' + result.openprice + ' -->  $' + result.closeprice + '</div>\
 									</div>\
 									<div class="pull-right"><div class="growth ' + marketGrowth + '">' + (((result.closeprice / result.openprice) * 100) - 100).toFixed(2) + '%</div></div>\
 									<div class="clearfix"></div>\

@@ -14,19 +14,29 @@ body {
     margin-left: 0;
 }
 #header h1 {
-    color: white;
-    background-color: #459e00;
+    color: #FFF;
+    background-color: #1DABDA;
     margin: 0;
-    font-size: 21px;
-    padding: 10px 5px;
+    font-size: 18px;
+    padding: 8px;
     text-align: left;
+    font-family: 'Roboto Slab', serif;
+}
+#hypeSpan {
+    display: inline-block;
+    background-color: #FFEF9E;
+    padding: 4px;
+    border-radius: 4px;
+    color: #666;
+    font-size: 15px;
+    line-height: 15px;
 }
 div.ui-datepicker {
     font-size: 19px;
     border-radius: 0;
 }
 .ipoResultRow {
-    border: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
     text-align: left;
     padding: 5px;
     cursor: pointer;
@@ -48,7 +58,8 @@ div.ui-datepicker {
     height: 45px;
     text-align: center;
     display: inline-block;
-}.hype {
+}
+.hype {
     font-size: 24px;
     background-color: rgb(252, 240, 186);
     padding: 5px;
@@ -61,30 +72,35 @@ div.ui-datepicker {
 }
 .ipoResultRowSlider {
     display: none;
-    border-top: 1px solid #DDD;
+    border-top: 1px solid #D3E7ED;
     margin-top: 5px;
-    padding: 10px 5px;
-    background-color: #FFFAE4;
+    padding: 5px 5px;
+    background-color: #E6F9FF;
     font-size: 12px;
+    color: #5A5A5A; 
 }
-.offeringPrice, .closingPrice, .marketPrice {
-    width: 150px;
+
+.sliderHeader {
+    width: 90px;
     display: inline-block;
 }
-.offering, .closing, .open {
+.prices {
     display: inline-block;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    font-size: 1.3em
 }
 .growth {
     display: block;
     font-size: 20px;
     text-align: center;
-    width: 90px;
+    width: 76px;
 }
 .gain {
-    color: green;
+    color: rgb(70, 160, 70);
 }
 .loss {
-    color: red;
+    color: rgb(242, 125, 125);
 }
 .market {
     margin-top: 10px;
@@ -92,4 +108,45 @@ div.ui-datepicker {
 #noResults {
     display: none;
     padding: 15px;
+}
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+    background: none;
+    background-color: #1DABDA;
+    font-weight: bold;
+    color: #fff;
+    border: 1px solid #87A6B0;
+}
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active {
+    background: #2E7086 url("images/ui-bg_highlight-hard_100_fafaf4_1x100.png") 50% 50% repeat-x !important;
+}
+.ui-widget-content {
+    border: none;
+}
+.ui-datepicker .ui-datepicker-header {
+    padding: 0;
+}
+.ui-widget-header {
+    background-color: #DDD;
+    background: none;
+    border: none;
+    color: #5A5A5A;
+    font-weight: normal;
+}
+.ui-datepicker td {
+    width: 14.28%;
+}
+.ui-datepicker th {
+    font-weight: normal;
+    font-size: .8em;
+    padding: .4em .3em;
+}
+.ui-datepicker-calendar thead tr {
+    color: #5A5A5A;
+    font-weight: normal;
+}
+.hypeVal_7, .hypeVal_8, .hypeVal_9, .hypeVal_10 {
+    background-color: rgb(201, 252, 203);
+}
+.hypeVal_1, .hypeVal_2, .hypeVal_3 {
+    background-color: rgb(252, 186, 186);
 }
