@@ -1,23 +1,21 @@
 $(document).ready(function() {
-    var todayDate = new Date(); // Default to today's date with leading zeros on page load   
-    var today = ('0' + (todayDate.getMonth() + 1)).slice(-2) + '/' + ('0' + todayDate.getDate()).slice(-2) + '/' + todayDate.getFullYear();
-    
-    fetchMonth(todayDate.getMonth()+1, todayDate.getFullYear(), function(msg){
+    var todayDate = new Date();
+    fetchMonth(todayDate.getMonth() + 1, todayDate.getFullYear(), function(msg) { // Call the function to show this month's IPOs
         goodDays = [];
 
         for (i in msg.results) {
             dateParts = msg.results[i]["ipodate"].split("-");
-            dateMonth = parseInt(dateParts[1]); 
-            dateDate = parseInt(dateParts[2]); 
-            goodDays.push( dateMonth + "-" + dateDate );
-        } 
+            dateMonth = parseInt(dateParts[1]);
+            dateDate = parseInt(dateParts[2]);
+            goodDays.push(dateMonth + "-" + dateDate);
+        }
         $.globalDatepicker = $('#datepicker').datepicker({ // jQuery UI's Datepicker initialized to a global variable
-            beforeShowDay: function (e){
-                var t=e.getDay();
-                var d=e.getDate();
-                var m=e.getMonth();
+            beforeShowDay: function(e) {
+                var t = e.getDay();
+                var d = e.getDate();
+                var m = e.getMonth();
 
-                return[(t>0&&6>t)&&(goodDays.indexOf(parseInt(m)+1 + "-" + (parseInt(d)))!=-1),""];
+                return [(goodDays.indexOf(parseInt(m) + 1 + "-" + (parseInt(d))) != -1), ""]; // Only allow dates containing IPOs
             },
 
             showOtherMonths: true,
@@ -30,29 +28,33 @@ $(document).ready(function() {
         displayResults(msg);
     });
 
-    function changeMonth( year, month )
-    {
-        fetchMonth(month, year, function(msg){
-            goodDays = [];
+    fixArrows();
 
-            for (i in msg.results) {
-                dateParts = msg.results[i]["ipodate"].split("-");
-                dateMonth = parseInt(dateParts[1]); 
-                dateDate = parseInt(dateParts[2]); 
-                goodDays.push( dateMonth + "-" + dateDate );
-            }
+    function changeMonth(year, month) // Display all IPOs in new month as the month is changed
+        {
 
-            $("#datepicker").datepicker("refresh");
+            fetchMonth(month, year, function(msg) {
+                goodDays = [];
 
-        });
-    }
+                for (i in msg.results) {
+                    dateParts = msg.results[i]["ipodate"].split("-");
+                    dateMonth = parseInt(dateParts[1]);
+                    dateDate = parseInt(dateParts[2]);
+                    goodDays.push(dateMonth + "-" + dateDate);
+                }
+
+                $("#datepicker").datepicker("refresh");
+                displayResults(msg);
+            });
+
+            fixArrows();
+        }
 
     $('#datepicker').change(function() {
-        $('#date').html($("#datepicker").val()); // Use datepicker to select new date
+        $('#date').html($("#datepicker").val()); // Use datepicker to select new date and display the new date's IPOs
         fetchIPOs($("#datepicker").val());
     });
 
-    // $('.ui-ico n-circle-triangle-w').html("").removeClass('ui-icon-circle-triangle-w').addClass('glyphicon glyphicon-chevron-left');
 
     $(document).on("click", ".ipoResultRow", function() {
         $(this).find(".ipoResultRowSlider").slideToggle();
@@ -66,9 +68,16 @@ $(document).ready(function() {
     });
 });
 
-function displayResults(msg) {
+function fixArrows() // Function to change the default datepicker arrows to nicer Bootstrap chevrons
+    {
+        setTimeout(function() {
+            $('.ui-icon-circle-triangle-w').html("").removeClass('ui-icon-circle-triangle-w').removeClass("ui-icon").addClass('glyphicon glyphicon-chevron-left');
+            $('.ui-icon-circle-triangle-e').html("").removeClass('ui-icon-circle-triangle-e').removeClass("ui-icon").addClass('glyphicon glyphicon-chevron-right');
+        }, 50);
+    }
+
+function displayResults(msg) { // Function to display IPOs fetched from the database
     if (msg.results.length) {
-        console.log(msg.results);
         for (i in msg.results) {
             result = msg.results[i];
 
@@ -143,6 +152,9 @@ function fetchIPOs(date) // Function to pull a single date from the ipo table
                 displayResults(msg);
             }
         });
+        
+        fixArrows();
+
     }
 
 function fetchMonth(month, year, callback) // Function to pull a whole month from the ipo table

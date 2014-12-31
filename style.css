@@ -20,9 +20,7 @@ body {
     font-size: 18px;
     padding: 8px;
     text-align: left;
-    font-family: 'Roboto Slab', serif;
-    /* border: 1px solid pink; */
-    
+    font-family: 'Roboto Slab', serif;    
     position: relative;
     box-shadow: 0px 1px 1px #969696;
 }
@@ -36,10 +34,6 @@ body {
 }
 #hypeSpan {
     display: inline-block;
-    /* background-color: #2E7086; */
-    /* padding: 4px; */
-    /* border-radius: 4px; */
-    
     color: #2E7086;
     font-size: 15px;
     line-height: 15px;
@@ -166,6 +160,19 @@ div.ui-datepicker {
 .ui-datepicker-calendar thead tr {
     color: #5A5A5A;
     font-weight: normal;
+}
+#datepicker .ui-widget-header .ui-datepicker-next .ui-icon, #datepicker .ui-widget-header .ui-datepicker-prev .ui-icon, .ui-widget-header .ui-datepicker-prev-hover, .ui-widget-header .ui-state-hover {
+    background: none !important;
+    border: 0 !important;
+}
+.ui-datepicker .ui-datepicker-prev, .ui-datepicker .ui-datepicker-next {
+    width: 15px;
+}
+.ui-widget-header a {
+    color: #AEE1F1;
+}
+.ui-widget-header .ui-state-hover {
+    color: #1DABDA !important;
 }
 .hypeVal_7, .hypeVal_8, .hypeVal_9, .hypeVal_10 {
     background-color: rgb(201, 252, 203);
