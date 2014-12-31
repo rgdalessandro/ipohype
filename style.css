@@ -13,7 +13,7 @@ body {
     margin-right: 0;
     margin-left: 0;
 }
-#header h1 {
+#header {
     color: #FFF;
     background-color: #1DABDA;
     margin: 0;
@@ -21,13 +21,26 @@ body {
     padding: 8px;
     text-align: left;
     font-family: 'Roboto Slab', serif;
+    /* border: 1px solid pink; */
+    
+    position: relative;
+    box-shadow: 0px 1px 1px #969696;
+}
+#footer, #footer a, #footer a:hover {
+    color: #FFF;
+    background-color: #1DABDA;
+    margin: 0;
+    font-size: 1em;
+    padding: 4px;
+    text-align: center;
 }
 #hypeSpan {
     display: inline-block;
-    background-color: #FFEF9E;
-    padding: 4px;
-    border-radius: 4px;
-    color: #666;
+    /* background-color: #2E7086; */
+    /* padding: 4px; */
+    /* border-radius: 4px; */
+    
+    color: #2E7086;
     font-size: 15px;
     line-height: 15px;
 }
@@ -77,22 +90,27 @@ div.ui-datepicker {
     padding: 5px 5px;
     background-color: #E6F9FF;
     font-size: 12px;
-    color: #5A5A5A; 
+    color: #777777;
 }
-
 .sliderHeader {
-    width: 90px;
+    width: 80px;
     display: inline-block;
+    font-size: 1.3em;
 }
 .prices {
     display: inline-block;
-    margin-top: 3px;
-    margin-bottom: 3px;
-    font-size: 1.3em
+    font-size: 1.3em;
+    color: rgb(118, 184, 205);
+}
+.glyphicon-arrow-right {
+    font-size: 12px;
+    display: inline-block;
+    width: 20px;
+    text-align: center;
 }
 .growth {
     display: block;
-    font-size: 20px;
+    font-size: 1.3em;
     text-align: center;
     width: 88px;
 }
@@ -102,8 +120,13 @@ div.ui-datepicker {
 .loss {
     color: rgb(242, 125, 125);
 }
+.offer {
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
 .market {
     margin-top: 10px;
+    margin-bottom: 3px;
 }
 #noResults {
     display: none;
@@ -112,7 +135,7 @@ div.ui-datepicker {
 .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
     background: none;
     background-color: #1DABDA;
-    font-weight: bold;
+    font-weight: normal;
     color: #fff;
     border: 1px solid #87A6B0;
 }

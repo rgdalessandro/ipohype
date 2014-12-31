@@ -22,7 +22,7 @@
 	}
 
 	function symbolsNoScore() {
-		$sql = "SELECT DISTINCT symbol, ipodate FROM ipo WHERE hype IS NULL";
+		$sql = "SELECT DISTINCT symbol, ipodate FROM ipo WHERE hype IS NULL OR ipodate >= CURDATE()";
 
 		$con = new connection();
 		$con->execute($sql);
