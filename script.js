@@ -1,7 +1,6 @@
 $(document).ready(function() {
     var todayDate = new Date(); // Default to today's date with leading zeros on page load   
     var today = ('0' + (todayDate.getMonth() + 1)).slice(-2) + '/' + ('0' + todayDate.getDate()).slice(-2) + '/' + todayDate.getFullYear();
-    // $('#date').html(today);
     
     fetchMonth(todayDate.getMonth()+1, todayDate.getFullYear(), function(msg){
         goodDays = [];
@@ -47,7 +46,6 @@ $(document).ready(function() {
 
         });
     }
-    
 
     $('#datepicker').change(function() {
         $('#date').html($("#datepicker").val()); // Use datepicker to select new date
