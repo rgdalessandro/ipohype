@@ -31,7 +31,6 @@
 			$ipodate = $row->find("td",3)->plaintext;
 			$ipodate = date('Y-m-d', strtotime($ipodate));		
 			$ipoprice = $row->find("td",5)->plaintext;
-			$closeprice = $row->find("td",6)->plaintext;
 
 			if ( !empty( $symbol ) && !in_array($symbol, $symbols) )
 			{
@@ -43,7 +42,7 @@
 				$ipo["ipodate"] = $ipodate;
 				$ipo["ipoprice"] = substr($ipoprice, 7);
 				$ipo["openprice"] = $marketdata["query"]["results"]["quote"]["Open"];
-				$ipo["closeprice"] = substr($closeprice, 7);
+				$ipo["closeprice"] = $marketdata["query"]["results"]["quote"]["Close"];
 				$ipo["tweet"] = $tweetRet;
 				$ipo["hype"] = $hypeRet;
 				$ipos[] = $ipo;
