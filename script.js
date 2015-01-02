@@ -21,7 +21,6 @@ $(document).ready(function() {
             showOtherMonths: true,
             selectOtherMonths: true,
             minDate: new Date(2014, 1 - 1, 10),
-            maxDate: "0",
             onChangeMonthYear: changeMonth
         });
 
@@ -57,7 +56,7 @@ $(document).ready(function() {
 
 
     $(document).on("click", ".ipoResultRow", function() {
-        $(this).find(".ipoResultRowSlider").slideToggle();
+            $(this).find(".ipoResultRowSlider").slideToggle();
     });
 
     $(document).on("click", ".ui-datepicker-month", function() {
@@ -82,22 +81,33 @@ function displayResults(msg) { // Function to display IPOs fetched from the data
             result = msg.results[i];
 
             if (parseFloat(result.closeprice) > parseFloat(result.ipoprice)) {
-                offerGrowth = "gain";
+                offerGrowthClass = "gain";
             } else if (parseFloat(result.closeprice) < parseFloat(result.ipoprice)) {
-                offerGrowth = "loss";
+                offerGrowthClass = "loss";
             } else {
-                offerGrowth = "wash";
+                offerGrowthClass = "wash";
             }
 
             if (parseFloat(result.closeprice) > parseFloat(result.openprice)) {
-                marketGrowth = "gain";
+                marketGrowthClass = "gain";
             } else if (parseFloat(result.closeprice) < parseFloat(result.openprice)) {
-                marketGrowth = "loss";
+                marketGrowthClass = "loss";
             } else {
-                marketGrowth = "wash";
+                marketGrowthClass = "wash";
             }
 
-            hypeVal = Math.floor(((result.hype - 40) / 25) * 10);
+            hypeVal = Math.floor(((result.hype - 40) / 25) * 10); // My own secret sauce to normalize hype
+            if (hypeVal < 0) {hypeVal = 0;} // Hype cannot be less than zero
+            if ( !(result.ipoprice > 0) ) {result.ipoprice = ' N/A';} // ipoprice cannot be less than zero
+            if ( !(result.closeprice > 0) ) {result.closeprice = ' N/A';} // closeprice cannot be less than zero
+            if ( !(result.openprice > 0) ) {result.openprice = ' N/A';} // openprice cannot be less than zero
+            if ( !result.openprice ) {result.openprice = ' N/A';} // openprice cannot be less than zero
+
+            offerGrowth = (((result.closeprice / result.ipoprice) * 100) - 100).toFixed(2);
+            marketGrowth = (((result.closeprice / result.openprice) * 100) - 100).toFixed(2);
+
+            if ( isNaN(offerGrowth) ) {offerGrowth = ' N/A';} // offerGrowth cannot NaN
+            if ( isNaN(marketGrowth) ) {marketGrowth = ' N/A';} // marketGrowth cannot NaN
 
             $("#results").append(
                 '<div class="ipoResultRow" title="Click for details">\
@@ -114,14 +124,14 @@ function displayResults(msg) { // Function to display IPOs fetched from the data
                             <div class="pull-left">\
                                 <div class="sliderHeader pull-left">IPO: </div><div class="prices">$' + result.ipoprice + ' <span class="glyphicon glyphicon-arrow-right"></span>  $' + result.closeprice + '</div>\
                             </div>\
-                            <div class="pull-right"><div class="growth ' + offerGrowth + '">' + (((result.closeprice / result.ipoprice) * 100) - 100).toFixed(2) + '%</div></div>\
+                            <div class="pull-right"><div class="growth ' + offerGrowthClass + '">' + offerGrowth + '%</div></div>\
                             <div class="clearfix"></div>\
                         </div>\
                         <div class="market">\
                             <div class="pull-left">\
                                 <div class="sliderHeader pull-left">Market: </div><div class="prices">$' + result.openprice + ' <span class="glyphicon glyphicon-arrow-right"></span>  $' + result.closeprice + '</div>\
                             </div>\
-                            <div class="pull-right"><div class="growth ' + marketGrowth + '">' + (((result.closeprice / result.openprice) * 100) - 100).toFixed(2) + '%</div></div>\
+                            <div class="pull-right"><div class="growth ' + marketGrowthClass + '">' + marketGrowth + '%</div></div>\
                             <div class="clearfix"></div>\
                         </div>\
                     </div>\
