@@ -71,9 +71,9 @@ $(document).ready(function() {
 function fixArrows() // Function to change the default datepicker arrows to nicer Bootstrap chevrons
     {
         setTimeout(function() {
-            $('.ui-icon-circle-triangle-w').html("").removeClass('ui-icon-circle-triangle-w').removeClass("ui-icon").addClass('glyphicon glyphicon-chevron-left');
-            $('.ui-icon-circle-triangle-e').html("").removeClass('ui-icon-circle-triangle-e').removeClass("ui-icon").addClass('glyphicon glyphicon-chevron-right');
-        }, 50);
+            $('.ui-icon-circle-triangle-w').hide().html("").removeClass('ui-icon-circle-triangle-w').removeClass("ui-icon").addClass('glyphicon glyphicon-chevron-left').fadeIn();
+            $('.ui-icon-circle-triangle-e').hide().html("").removeClass('ui-icon-circle-triangle-e').removeClass("ui-icon").addClass('glyphicon glyphicon-chevron-right').fadeIn();
+        }, 500);
     }
 
 function displayResults(msg) { // Function to display IPOs fetched from the database

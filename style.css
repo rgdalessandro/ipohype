@@ -54,6 +54,10 @@ div.ui-datepicker {
 }
 .companyName {
     color: #666;
+    max-width: 250px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .tweet {
     font-size: 24px;
