@@ -11,7 +11,7 @@
 	foreach ( $symbols as $symbol )
 	{
 		$backhypehtml = file_get_contents('http://otter.topsy.com/sentiment.js?q=%24' . $symbol["symbol"] . '&mintime=' . ($symbol["ipodate"] - 691200) . '&maxtime=' . ($symbol["ipodate"] - 86400) . '&apikey=09C43A9B270A470B8EB8F2946A9369F3');		
-		$backhypedata = json_decode($backhypehtml, true);f
+		$backhypedata = json_decode($backhypehtml, true);
 
 		$tweet = $backhypedata["response"]["results"][0]["stats"]["total"]["mentions"];
 		$hype = floor( $backhypedata["response"]["results"][0]["stats"]["average"]["sentiment_score"] );
