@@ -1,8 +1,10 @@
 #!/usr/bin/php
 <?php
-	error_reporting( E_ERROR | E_PARSE );
+	// script to scrape for tweets and topsy.com sentiment value
 
-	include_once( 'simple_html_dom.php' );
+	error_reporting( E_ERROR | E_PARSE ); // this line facilitates debugging this script
+
+	include_once( 'simple_html_dom.php' ); // scraping script
 	include_once( 'connection.php' );
 
 	$symbols = symbolsNoScore();
@@ -22,7 +24,7 @@
 		sleep ( 1 );
 	}
 
-	function symbolsNoScore() {
+	function symbolsNoScore() { // get a list of IPOs and their dates from the database that are missing tweets/hype or are in the future
 		$sql = "SELECT DISTINCT symbol, ipodate FROM ipo WHERE hype IS NULL OR ipodate >= CURDATE()";
 
 		$con = new connection();

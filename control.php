@@ -2,7 +2,7 @@
 
 	include_once("connection.php");
 
-	switch ($_GET['function'])
+	switch ($_GET['function']) // switch statement to determine function to run
 	{
 		case "dateToCheck":
 			dateToCheck();
@@ -15,7 +15,7 @@
 			break;
 	}
 
-	function dateToCheck()
+	function dateToCheck()	// function to retrieve from SQL all IPOs on a given date
 	{
 		$date = date('Y-m-d', strtotime($_GET['date']));
 
@@ -36,7 +36,7 @@
 		die($json);
 	}
 
-	function monthToCheck()
+	function monthToCheck() // function to retrieve from SQL all IPOs in a given month
 	{
 		$month = $_GET['month'];
 		$year = $_GET['year'];
@@ -58,7 +58,7 @@
 		die($json);
 	}
 
-	function dateExists()
+	function dateExists()	// function to check if any IPOs exist in the database for a given date
 	{
 		$date = date('Y-m-d', strtotime($_GET['date']));
 

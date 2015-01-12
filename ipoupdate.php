@@ -1,8 +1,10 @@
 #!/usr/bin/php
 <?php
-	error_reporting( E_ERROR | E_PARSE );
+	// script to update today's IPOs with market open/close prices
 
-	include_once( 'simple_html_dom.php' );
+	error_reporting( E_ERROR | E_PARSE ); // this line facilitates debugging this script
+
+	include_once( 'simple_html_dom.php' ); // scraping script
 	include_once( 'connection.php' );
 
 	$symbols = getSymbols();
@@ -25,7 +27,7 @@
 		$con->execute($sql);
 	}
 
-	function getSymbols() {
+	function getSymbols() { // get a list of all future IPOs and their dates 
 		$sql = "SELECT DISTINCT symbol, ipodate FROM ipo WHERE ipodate >= CURDATE()";
 
 		$con = new connection();

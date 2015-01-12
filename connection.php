@@ -13,7 +13,7 @@ class connection
     private $exectime; //execution time
     private $query;    
     
-    function connection()
+    function connection() // function to open a connection to SQL
     {
         $this->link = new mysqli($this->server, $this->user, $this->pass, $this->db);
 
@@ -35,7 +35,7 @@ class connection
         return $this->link->error;
     }
     
-    function execute($query)
+    function execute($query) // function to execute an SQL command
     {
         $this->query   = $query;
 
@@ -44,9 +44,9 @@ class connection
         return $this->result;
     }
 
-    function fetch() { return $this->rows =  $this->result->fetch_assoc(); }
+    function fetch() { return $this->rows =  $this->result->fetch_assoc(); } // function to return all result rows
 
-    public static function fetchOne( $sql )
+    public static function fetchOne( $sql ) // functino to return one result row at a time
     {
         $con = new connection();
 
@@ -57,12 +57,12 @@ class connection
         return $con->rows;
     }
         
-    function getId()
+    function getId() // function to return the ID of a result row
     {
         return $this->link->insert_id;
     }
         
-    function closeConn()
+    function closeConn() // function to terminate connection to SQL
     {
         $this->link->close();
     }
