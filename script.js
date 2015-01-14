@@ -21,6 +21,7 @@ $(document).ready(function() {
             showOtherMonths: true,
             selectOtherMonths: true,
             minDate: new Date(2014, 1 - 1, 10),
+            maxDate: '+21D',
             onChangeMonthYear: changeMonth
         });
 
