@@ -98,7 +98,7 @@ function displayResults(msg) { // Function to display IPOs fetched from the data
             }
 
             hypeVal = Math.floor(((result.hype - 40) / 25) * 10); // My own secret sauce to normalize hype
-            if (hypeVal < 0) {hypeVal = ' -';} // Hype cannot be less than zero
+            if (hypeVal < 0 | !parseInt(result.tweet) ) {hypeVal = ' -';} // Hype cannot be less than zero or missing
             if ( !(result.ipoprice > 0) ) {result.ipoprice = ' N/A';} // ipoprice cannot be less than zero
             if ( !(result.closeprice > 0) ) {result.closeprice = ' N/A';} // closeprice cannot be less than zero
             if ( !(result.openprice > 0) ) {result.openprice = ' N/A';} // openprice cannot be less than zero
