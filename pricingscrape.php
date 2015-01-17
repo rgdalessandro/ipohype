@@ -49,7 +49,7 @@
 	foreach ($ipos as $ipo) // insert values into database
 	{
 		$sql = "UPDATE ipo SET ipoprice = '" . mysql_escape_string($ipo['ipoprice']) . "', closeprice = '" . mysql_escape_string($ipo['closeprice']) . "' WHERE symbol = '" . $ipo['symbol'] . "'";
-		$con->execute($sql); print_r($sql);
+		$con->execute($sql);
 	}
 
 	function getSymbols() { // get a list of IPOs from database that are missing the ipoprice
