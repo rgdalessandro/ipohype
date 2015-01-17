@@ -29,6 +29,7 @@
 
 			$symbol = $row->find("td",1)->plaintext;	
 			$ipoprice = $row->find("td",5)->plaintext;
+			$closeprice = $row->find("td",6)->plaintext;
 
 			if ( !empty( $symbol ) && in_array($symbol, $symbols) ) // only write to database if the IPO is in the database
 			{
@@ -37,6 +38,7 @@
 
 				$ipo["symbol"] = $symbol;
 				$ipo["ipoprice"] = substr($ipoprice, 7);
+				$ipo["closeprice"] = substr($closeprice, 7);
 
 				$ipos[] = $ipo;
 			}
@@ -46,8 +48,8 @@
 	$con = new connection();
 	foreach ($ipos as $ipo) // insert values into database
 	{
-		$sql = "UPDATE ipo SET ipoprice = '" . mysql_escape_string($ipoprice) . "' WHERE symbol = '" . $symbol . "'";
-		$con->execute($sql);
+		$sql = "UPDATE ipo SET ipoprice = '" . mysql_escape_string($ipo['ipoprice']) . "', closeprice = '" . mysql_escape_string($ipo['closeprice']) . "' WHERE symbol = '" . $ipo['symbol'] . "'";
+		$con->execute($sql); print_r($sql);
 	}
 
 	function getSymbols() { // get a list of IPOs from database that are missing the ipoprice

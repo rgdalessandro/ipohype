@@ -1,6 +1,6 @@
 #!/usr/bin/php
 <?php
-	// script to update today's IPOs with market open/close prices
+	// script to update IPOs with market open/close prices
 
 	error_reporting( E_ERROR | E_PARSE ); // this line facilitates debugging this script
 
@@ -27,8 +27,8 @@
 		$con->execute($sql);
 	}
 
-	function getSymbols() { // get a list of all future IPOs and their dates 
-		$sql = "SELECT DISTINCT symbol, ipodate FROM ipo WHERE ipodate >= CURDATE()";
+	function getSymbols() { // get a list of all IPOs that don't have first day open/close price set 
+		$sql = "SELECT DISTINCT symbol, ipodate FROM ipo WHERE closeprice = 0 OR openprice = 0";
 
 		$con = new connection();
 		$con->execute($sql);
