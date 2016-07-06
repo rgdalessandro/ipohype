@@ -10,7 +10,7 @@
 	$symbols = getSymbols();
 
 	$ipohtml = file_get_html('http://www.iposcoop.com/index.php?option=com_content&task=view&id=793&Itemid=99');
-	$ipoRet = $ipohtml->find("table",14);
+	$ipoRet = $ipohtml->find("table",0);
 
 	$ipos = array();
 	$counter = 0;
@@ -30,7 +30,7 @@
 			$symbol = $row->find("td",1)->plaintext;
 			$company = $row->find("td",0)->plaintext;
 			$company = trim($company);
-			$scrapedate = $row->find("td",7)->plaintext;
+			$scrapedate = $row->find("td",4)->plaintext;
 			$scrapedate = explode( "\n", $scrapedate );
 			$ipodate = date('Y-m-d', strtotime($scrapedate[0]));		
 

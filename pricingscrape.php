@@ -10,7 +10,7 @@
 	$symbols = getSymbols();
 
 	$ipohtml = file_get_html('http://www.iposcoop.com/index.php?option=com_content&task=view&id=1544&Itemid=147');
-	$ipoRet = $ipohtml->find("table",14);
+	$ipoRet = $ipohtml->find("table",0);
 
 	$ipos = array();
 	$counter = 0;
