@@ -30,6 +30,8 @@
 			$symbol = $row->find("td",1)->plaintext;	
 			$ipoprice = $row->find("td",5)->plaintext;
 			$closeprice = $row->find("td",6)->plaintext;
+			$scrapedate = $row->find("td",3)->plaintext;
+			$ipodate = date('Y-m-d', strtotime($scrapedate[0]));
 
 			if ( !empty( $symbol ) && in_array($symbol, $symbols) ) // only write to database if the IPO is in the database
 			{
@@ -37,6 +39,7 @@
 				$marketdata = json_decode($markethtml, true);
 
 				$ipo["symbol"] = $symbol;
+				$ipo["ipodate"] = $ipodate;
 				$ipo["ipoprice"] = substr($ipoprice, 7);
 				$ipo["closeprice"] = substr($closeprice, 7);
 
@@ -48,7 +51,7 @@
 	$con = new connection();
 	foreach ($ipos as $ipo) // insert values into database
 	{
-		$sql = "UPDATE ipo SET ipoprice = '" . mysql_escape_string($ipo['ipoprice']) . "', closeprice = '" . mysql_escape_string($ipo['closeprice']) . "' WHERE symbol = '" . $ipo['symbol'] . "'";
+		$sql = "UPDATE ipo SET ipoprice = '" . mysql_escape_string($ipo['ipoprice']) . "', closeprice = '" . mysql_escape_string($ipo['closeprice']) . "', ipodate = '" . mysql_escape_string($ipo['ipodate']) . "' WHERE symbol = '" . $ipo['symbol'] . "'";
 		$con->execute($sql);
 	}
 
