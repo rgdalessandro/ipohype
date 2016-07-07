@@ -1,7 +1,7 @@
 $(document).ready(function() {
     var todayDate = new Date();
-    var maxMonth = new Date(15, 8).getMonth() + 1;
-    var maxYear = new Date(15, 8).getFullYear();
+    var maxMonth = new Date(2015, 8).getMonth();
+    var maxYear = new Date(2015, 8).getFullYear();
     fetchMonth(maxMonth, maxYear, function(msg) { // Call the function to show this month's IPOs
         goodDays = [];
 
