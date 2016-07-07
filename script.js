@@ -1,6 +1,6 @@
 $(document).ready(function() {
     var todayDate = new Date();
-    fetchMonth(todayDate.getMonth() + 1, todayDate.getFullYear(), function(msg) { // Call the function to show this month's IPOs
+    fetchMonth(8 + 1, 2015, function(msg) { // Call the function to show this month's IPOs
         goodDays = [];
 
         for (i in msg.results) {
